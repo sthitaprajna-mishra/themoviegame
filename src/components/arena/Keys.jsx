@@ -1,9 +1,16 @@
 import React from "react";
+import { useMyContext } from "../MyContext";
+
+const alphabet = "abcdefghijklmnopqrstuvwxyz0123456789".toUpperCase().split("");
 
 const Keys = () => {
   // PLAY ARENA
-  const alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
+
   console.log(alphabet);
+
+  // CONTEXT
+  const { movieName } = useMyContext();
+  console.log(movieName);
 
   return (
     <>

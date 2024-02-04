@@ -1,8 +1,17 @@
 import { useState } from "react";
 
+import { useMyContext } from "../MyContext";
+
 const Home = () => {
   // HOMEPAGE
-  const [movieName, setMovieName] = useState("");
+  const { updateMovieName } = useMyContext();
+  const [userInput, setUserInput] = useState("");
+
+  const submitMovieName = (movieName) => {
+    console.log("Clicking me!");
+    if (movieName == null || movieName.trim() == "") return;
+    updateMovieName(movieName);
+  };
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -14,11 +23,14 @@ const Home = () => {
           <input
             type="text"
             className="outline-none p-2"
-            value={movieName}
-            onChange={(e) => setMovieName(e.target.value.toUpperCase())}
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value.toUpperCase())}
           />
         </div>
-        <div className="bg-green-400 w-1/3 mx-auto rounded text-center text-white font-bold py-2 transition-all hover:cursor-pointer">
+        <div
+          className="bg-green-400 w-1/3 mx-auto rounded text-center text-white font-bold py-2 transition-all hover:cursor-pointer"
+          onClick={() => submitMovieName(userInput)}
+        >
           <h1>Submit</h1>
         </div>
       </div>
