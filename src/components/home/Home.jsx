@@ -19,7 +19,7 @@ const Home = () => {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-semibold">The Movie Game</h1>
         </div>
-        <div className="text-2xl mb-3 border border-gray-400">
+        <div className="text-2xl lg:text-xl mb-3 border border-gray-400">
           <input
             type="text"
             className="outline-none p-2"
