@@ -57,7 +57,7 @@ const Display = () => {
     <>
       <p>{movieName}</p>
 
-      {multiArrays.length !== 0 ? (
+      {multiArrays && multiArrays.length !== 0 ? (
         multiArrays.map((word, index1) => (
           <div key={index1}>
             {word.map((letter, index2) => {
