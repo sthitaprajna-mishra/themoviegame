@@ -18,12 +18,6 @@ const Keys = () => {
   } = useMyContext();
 
   const handleUserGuess = (e) => {
-    // as of now, length is 8, means this choice will be the 9th choice, aka last choice
-    if (guessArray.length == 8) {
-      setFin(true);
-      return;
-    }
-
     const userChoice = e.target.outerText;
     console.log(userChoice);
 
@@ -34,15 +28,12 @@ const Keys = () => {
 
     setChoice(userChoice);
 
-    const updatedGuessArray = [...guessArray];
-    updatedGuessArray.push(userChoice);
-    setGuessArray(updatedGuessArray);
+    let indexI = -1,
+      indexJ = -1;
 
     if (movieName.includes(userChoice)) {
       console.log("This letter is in the movie. Yay!");
 
-      let indexI = -1,
-        indexJ = -1;
       for (let i = 0; i < valueArray.length; i++) {
         for (let j = 0; j < valueArray[i].length; j++) {
           if (valueArray[i][j] == userChoice && !truthArray[i][j]) {
@@ -52,14 +43,29 @@ const Keys = () => {
           }
         }
       }
+    }
 
+    // valid choice, i.e., indices are present
+    if (indexI != -1 && indexJ != -1) {
       const updatedTruthArray = [...truthArray];
       updatedTruthArray[indexI][indexJ] = true;
       setTruthArray(updatedTruthArray);
+    }
+    // update guess array only if guess is wrong
+    else {
+      const updatedGuessArray = [...guessArray];
+      updatedGuessArray.push(userChoice);
+      setGuessArray(updatedGuessArray);
+    }
 
-      if (hasWon()) {
-        setFin(true);
-      }
+    // as of now, length is 8, means this choice will be the 9th choice, aka last choice
+    if (guessArray.length == 8) {
+      setFin(true);
+      return;
+    }
+
+    if (hasWon()) {
+      setFin(true);
     }
   };
 
