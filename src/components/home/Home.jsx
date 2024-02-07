@@ -55,7 +55,7 @@ const Home = () => {
               type="radio"
               value="Bollywood"
               checked={movieIndustry == "Bollywood"}
-              onClick={() => handleMovieIndustry("Bollywood")}
+              onChange={() => handleMovieIndustry("Bollywood")}
             />{" "}
             Bollywood
           </div>

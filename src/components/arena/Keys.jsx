@@ -18,8 +18,10 @@ const Keys = () => {
   } = useMyContext();
 
   const handleUserGuess = (e) => {
-    if (guessArray.length == 9) {
+    // as of now, length is 8, means this choice will be the 9th choice, aka last choice
+    if (guessArray.length == 8) {
       setFin(true);
+      return;
     }
 
     const userChoice = e.target.outerText;
@@ -71,7 +73,7 @@ const Keys = () => {
       {fin ? (
         <div className="flex flex-col items-center">
           <div className="text-xl">
-            {hasWon ? <>Congrats! You won!</> : <>Sorry! You lost! </>}
+            {hasWon() ? <>Congrats! You won!</> : <>Sorry! You lost! </>}
           </div>
           <div>The answer was {movieName}</div>
         </div>
