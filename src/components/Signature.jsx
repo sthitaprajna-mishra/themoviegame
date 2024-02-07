@@ -2,8 +2,8 @@ import React from "react";
 
 const Signature = () => {
   return (
-    <>
-      <div className="text-sm">
+    <div className="absolute left-2 top-2">
+      <div className="text-xs">
         Made with ❤️ by{" "}
         <span className="underline">
           <a target="_blank" href="https://github.com/sthitaprajna-mishra">
@@ -11,7 +11,7 @@ const Signature = () => {
           </a>
         </span>
       </div>
-    </>
+    </div>
   );
 };
 

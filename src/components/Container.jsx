@@ -2,21 +2,21 @@ import React from "react";
 import Home from "./home/Home";
 import { useMyContext } from "./MyContext";
 import Arena from "./arena/Arena";
+import Signature from "./Signature";
 
 const Container = () => {
   // CONTEXT
   const { movieName } = useMyContext();
   return (
     <>
-      <div className="">
-        {movieName == "" ? (
-          <Home />
-        ) : (
-          <>
-            <Arena />
-          </>
-        )}
-      </div>
+      <Signature />
+      {movieName == "" ? (
+        <Home />
+      ) : (
+        <>
+          <Arena />
+        </>
+      )}
     </>
   );
 };
