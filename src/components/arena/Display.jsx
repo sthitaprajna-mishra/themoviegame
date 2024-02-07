@@ -43,8 +43,8 @@ const Display = () => {
     setValueArray,
     truthArray,
     setTruthArray,
-    chances,
-    setChances,
+    guessArray,
+    setGuessArray,
   } = useMyContext();
   //   const [multiArrays, setMultiArrays] = useState([]);
   //   const [multiBoolArrays, setMultiBoolArrays] = useState([]);
@@ -61,15 +61,19 @@ const Display = () => {
   hideArray.fill(false);
   console.log("hideArray of length " + hideArray.length + " has been created.");
 
-  console.log("Chances left: " + chances);
+  console.log("User guesses: " + guessArray);
+  console.log(truthArray);
 
   return (
     <div className="flex w-fit overflow-hidden border-1 border-red-600">
       <div className="text-center border-1 border-red-500">
         {valueArray && valueArray.length !== 0 ? (
           valueArray.map((word, index1) => (
-            <span className="flex items-center justify-center font-semibold p-2 ml-0.5 mb-0.5 lg:inline border-1 border-red-500">
-              <span className="mr-2" key={index1}>
+            <span
+              key={index1}
+              className="flex items-center justify-center font-semibold p-2 ml-0.5 mb-0.5 lg:inline border-1 border-red-500"
+            >
+              <span className="mr-2">
                 {word.map((letter, index2) => {
                   if (truthArray[index1][index2]) {
                     return (

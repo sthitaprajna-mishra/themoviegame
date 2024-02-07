@@ -6,26 +6,36 @@ const alphaNumericValues = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
 
 const Keys = () => {
   const [choice, setChoice] = useState("");
+  const [fin, setFin] = useState(false);
   const {
     movieName,
     valueArray,
     setValueArray,
     truthArray,
     setTruthArray,
-    chances,
-    setChances,
+    guessArray,
+    setGuessArray,
   } = useMyContext();
 
   const handleUserGuess = (e) => {
+    if (guessArray.length == 9) {
+      setFin(true);
+    }
+
     const userChoice = e.target.outerText;
     console.log(userChoice);
 
     if ("AEIOUaeiou".includes(userChoice)) return;
 
     // if valid choice, then reduce number of chances
-    setChances(chances - 1);
+    // setChances(chances - 1);
 
     setChoice(userChoice);
+
+    const updatedGuessArray = [...guessArray];
+    updatedGuessArray.push(userChoice);
+    setGuessArray(updatedGuessArray);
+
     if (movieName.includes(userChoice)) {
       console.log("This letter is in the movie. Yay!");
 
@@ -44,22 +54,40 @@ const Keys = () => {
       const updatedTruthArray = [...truthArray];
       updatedTruthArray[indexI][indexJ] = true;
       setTruthArray(updatedTruthArray);
+
+      if (hasWon()) {
+        setFin(true);
+      }
     }
   };
 
+  const hasWon = () => {
+    console.log(truthArray);
+    return !truthArray.some((subArr) => subArr.includes(false));
+  };
+
   return (
-    <div className="flex flex-wrap justify-center items-center border-2 border-green-600">
-      {alphaNumericValues.map((item, index) => {
-        return (
-          <div
-            onClick={handleUserGuess}
-            key={index}
-            className="flex items-center justify-center w-1/12 h-1/6 font-semibold py-2 lg:p-4 ml-0.5 rounded text-center transition-all border border-gray-700 hover:cursor-pointer hover:bg-white hover:text-gray-700 bg-gray-700 text-white"
-          >
-            {item}
+    <div className="flex flex-wrap justify-center items-center">
+      {fin ? (
+        <div className="flex flex-col items-center">
+          <div className="text-xl">
+            {hasWon ? <>Congrats! You won!</> : <>Sorry! You lost! </>}
           </div>
-        );
-      })}
+          <div>The answer was {movieName}</div>
+        </div>
+      ) : (
+        alphaNumericValues.map((item, index) => {
+          return (
+            <div
+              onClick={handleUserGuess}
+              key={index}
+              className="flex items-center justify-center w-1/12 h-1/6 font-semibold py-2 lg:p-4 ml-0.5 rounded text-center transition-all border border-gray-700 hover:cursor-pointer hover:bg-white hover:text-gray-700 bg-gray-700 text-white"
+            >
+              {item}
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };
