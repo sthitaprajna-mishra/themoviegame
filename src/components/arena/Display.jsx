@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useMyContext } from "../MyContext";
 
 const filterAndSplitMovieName = (movieName) => {
@@ -37,8 +37,15 @@ const isVowel = (letter) => {
 };
 
 const Display = () => {
-  const { movieName, valueArray, setValueArray, truthArray, setTruthArray } =
-    useMyContext();
+  const {
+    movieName,
+    valueArray,
+    setValueArray,
+    truthArray,
+    setTruthArray,
+    chances,
+    setChances,
+  } = useMyContext();
   //   const [multiArrays, setMultiArrays] = useState([]);
   //   const [multiBoolArrays, setMultiBoolArrays] = useState([]);
 
@@ -54,26 +61,26 @@ const Display = () => {
   hideArray.fill(false);
   console.log("hideArray of length " + hideArray.length + " has been created.");
 
-  return (
-    <>
-      <p>{movieName}</p>
+  console.log("Chances left: " + chances);
 
+  return (
+    <div className="flex w-fit overflow-hidden border-1 border-red-600">
       <div className="text-center border-1 border-red-500">
         {valueArray && valueArray.length !== 0 ? (
           valueArray.map((word, index1) => (
-            <span className="text-3xl block lg:inline border-1 border-red-500">
+            <span className="flex items-center justify-center font-semibold p-2 ml-0.5 mb-0.5 lg:inline border-1 border-red-500">
               <span className="mr-2" key={index1}>
                 {word.map((letter, index2) => {
                   if (truthArray[index1][index2]) {
                     return (
-                      <span className="mx-2" key={index2}>
+                      <span className="mx-2 text-2xl" key={index2}>
                         {letter}
                       </span>
                     );
                   } else {
                     return (
                       <span
-                        className="mx-2 px-4 border-b-2 text-white border-b-black"
+                        className="mx-2 px-1 lg:px-4 border-b-2 text-white border-b-black"
                         key={index2}
                       >
                         {""}
@@ -85,7 +92,7 @@ const Display = () => {
               {index1 == valueArray.length - 1 ? (
                 <></>
               ) : (
-                <span className="font-bold text-gray-500 text-5xl">/</span>
+                <span className="font-bold text-gray-500 text-xl">/</span>
               )}
             </span>
           ))
@@ -93,9 +100,7 @@ const Display = () => {
           <p>"processing..."</p>
         )}
       </div>
-
-      <div>Display</div>
-    </>
+    </div>
   );
 };
 

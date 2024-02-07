@@ -6,6 +6,7 @@ const MyProvider = ({ children }) => {
   const [movieName, setMovieName] = useState("");
   const [truthArray, setTruthArray] = useState([]);
   const [valueArray, setValueArray] = useState([]);
+  const [chances, setChances] = useState(9);
 
   const updateMovieName = (newMovieName) => {
     setMovieName(newMovieName);
@@ -20,6 +21,8 @@ const MyProvider = ({ children }) => {
         setValueArray,
         truthArray,
         setTruthArray,
+        chances,
+        setChances,
       }}
     >
       {children}

@@ -8,7 +8,7 @@ const Container = () => {
   const { movieName } = useMyContext();
   return (
     <>
-      <div className="px-2">
+      <div className="">
         {movieName == "" ? (
           <Home />
         ) : (
