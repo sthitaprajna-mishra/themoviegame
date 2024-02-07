@@ -1,8 +1,7 @@
 import React from "react";
 import Home from "./home/Home";
-import Keys from "./arena/Keys";
 import { useMyContext } from "./MyContext";
-import Display from "./arena/Display";
+import Arena from "./arena/Arena";
 
 const Container = () => {
   // CONTEXT
@@ -14,8 +13,7 @@ const Container = () => {
           <Home />
         ) : (
           <>
-            <Display />
-            <Keys />
+            <Arena />
           </>
         )}
       </div>

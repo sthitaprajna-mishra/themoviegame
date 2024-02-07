@@ -37,17 +37,18 @@ const isVowel = (letter) => {
 };
 
 const Display = () => {
-  const { movieName } = useMyContext();
-  const [multiArrays, setMultiArrays] = useState([]);
-  const [multiBoolArrays, setMultiBoolArrays] = useState([]);
+  const { movieName, valueArray, setValueArray, truthArray, setTruthArray } =
+    useMyContext();
+  //   const [multiArrays, setMultiArrays] = useState([]);
+  //   const [multiBoolArrays, setMultiBoolArrays] = useState([]);
 
   useEffect(() => {
     const [l1, l2] = filterAndSplitMovieName(movieName);
-    setMultiArrays(l1);
-    setMultiBoolArrays(l2);
+    setValueArray(l1);
+    // setMultiBoolArrays(l2);
+    setTruthArray(l2);
   }, []);
 
-  const numberOfWords = movieName.split(" ");
   const movieNameLength = movieName.length;
   const hideArray = new Array(movieNameLength);
   hideArray.fill(false);
@@ -57,21 +58,41 @@ const Display = () => {
     <>
       <p>{movieName}</p>
 
-      {multiArrays && multiArrays.length !== 0 ? (
-        multiArrays.map((word, index1) => (
-          <div key={index1}>
-            {word.map((letter, index2) => {
-              if (multiBoolArrays[index1][index2]) {
-                return <span key={index2}>{letter + " "}</span>;
-              } else {
-                return <span key={index2}>{"@ "}</span>;
-              }
-            })}
-          </div>
-        ))
-      ) : (
-        <p>"processing..."</p>
-      )}
+      <div className="text-center border-1 border-red-500">
+        {valueArray && valueArray.length !== 0 ? (
+          valueArray.map((word, index1) => (
+            <span className="text-3xl block lg:inline border-1 border-red-500">
+              <span className="mr-2" key={index1}>
+                {word.map((letter, index2) => {
+                  if (truthArray[index1][index2]) {
+                    return (
+                      <span className="mx-2" key={index2}>
+                        {letter}
+                      </span>
+                    );
+                  } else {
+                    return (
+                      <span
+                        className="mx-2 px-4 border-b-2 text-white border-b-black"
+                        key={index2}
+                      >
+                        {""}
+                      </span>
+                    );
+                  }
+                })}
+              </span>
+              {index1 == valueArray.length - 1 ? (
+                <></>
+              ) : (
+                <span className="font-bold text-gray-500 text-5xl">/</span>
+              )}
+            </span>
+          ))
+        ) : (
+          <p>"processing..."</p>
+        )}
+      </div>
 
       <div>Display</div>
     </>
