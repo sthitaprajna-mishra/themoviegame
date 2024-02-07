@@ -46,7 +46,7 @@ const Home = () => {
               type="radio"
               value="Hollywood"
               checked={movieIndustry == "Hollywood"}
-              onChange={handleMovieIndustry}
+              onChange={() => handleMovieIndustry("Hollywood")}
             />{" "}
             Hollywood
           </div>
