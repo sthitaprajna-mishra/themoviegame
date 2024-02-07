@@ -32,7 +32,7 @@ const Keys = () => {
         indexJ = -1;
       for (let i = 0; i < valueArray.length; i++) {
         for (let j = 0; j < valueArray[i].length; j++) {
-          if (valueArray[i][j] == userChoice) {
+          if (valueArray[i][j] == userChoice && !truthArray[i][j]) {
             indexI = i;
             indexJ = j;
             break;
