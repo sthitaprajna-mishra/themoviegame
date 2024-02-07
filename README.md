@@ -6,9 +6,9 @@ Imagine yourself transported back to those carefree school days, huddled togethe
 
 So gather your friends, sharpen your wits, and let the nostalgia wash over you! 🍿🎉
 
-### **Demo**
+### **Demo** 🌐
 
-A live demo can be accessed [here]().
+A live demo can be accessed [here](https://mymoviegame.netlify.app/).
 
 ## How to Play
 
